@@ -1,6 +1,6 @@
 class Doc {
     /**
-     * @param {Object} options 
+     * @param {Object} options
      * @returns {Node}
      */
     createElement(options) {
@@ -12,8 +12,8 @@ class Doc {
         return this.combine(element, options);
     }
     /**
-     * @param {Node} element 
-     * @param {Object} options 
+     * @param {Node} element
+     * @param {Object} options
      * @returns {Node}
      */
     combine(element, options) {
@@ -38,7 +38,7 @@ class Doc {
         return element;
     }
     /**
-     * @param {Object} options 
+     * @param {Object} options
      * @returns {Array}
      */
     createStyleList(options = {}) {
@@ -56,7 +56,7 @@ class Doc {
         return result;
     }
     /**
-     * @param {Object} options 
+     * @param {Object} options
      * @returns {String}
      */
     createStyleText(options = {}) {
@@ -65,8 +65,8 @@ class Doc {
             .join('');
     }
     /**
-     * @param {Node} element 
-     * @param {Object} style 
+     * @param {Node} element
+     * @param {Object} style
      */
     setStyle(element, style) {
         style = this.createStyleList(style);
@@ -82,15 +82,15 @@ class Doc {
         };
     }
     /**
-     * @param {String} selector 
-     * @param {Object} options 
+     * @param {String} selector
+     * @param {Object} options
      * @returns {Node}
      */
     querySelector(selector, options) {
         return this.combine(document.querySelector(selector), options);
     }
     /**
-     * @param {Node} element 
+     * @param {Node} element
      */
     openFullScreen(element) {
         if (element.requestFullscreen) element.requestFullscreen();
@@ -106,7 +106,7 @@ class Doc {
         else if (document.msExitFullscreen) document.msExitFullscreen();
     }
     /**
-     * @param {Node} element 
+     * @param {Node} element
      * @param {String} block
      */
     scrollToElement(element, block) {
@@ -131,27 +131,24 @@ window.TPSM = new (class {
         this.doc = new Doc();
     }
     /**
-     * @param {String} value 
+     * @param {String} value
+     * @param {Object} options
      * @returns {String}
      */
-    removeExtraWhitespace(value) {
-        value = value
-            .split('\n')
-            .map((e) => {
-                e = e.trim();
-                while (e.includes('  ')) e = e.replaceAll('  ', ' ');
-                return e;
-            })
-            .join(' ')
-            .trim();
-        while (value.includes('  ')) value = value.replaceAll('  ', ' ');
+    removeExtraWhitespace(value, options) {
+        value = value.split('\n').map((e) => {
+            e = e.trim();
+            while (e.includes('  ')) e = e.replaceAll('  ', ' ');
+            return e;
+        });
+        value = value.join(options.onOneLine ? ' ' : '\n');
         return value;
     }
     /**
-     * @param {Number} width 
-     * @param {Number} height 
-     * @param {Function} callback 
-     * @param {Node} element 
+     * @param {Number} width
+     * @param {Number} height
+     * @param {Function} callback
+     * @param {Node} element
      */
     setAspectRatio(width, height, callback, element) {
         if (typeof element === 'string') element = this.querySelector(element);
@@ -169,7 +166,7 @@ window.TPSM = new (class {
         element.arResize();
     }
     /**
-     * @param {Number} duration 
+     * @param {Number} duration
      */
     delay(duration) {
         return new Promise((resolve) => setTimeout(resolve, duration));
