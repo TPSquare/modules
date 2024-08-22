@@ -157,6 +157,16 @@ class Mathh {
     degreesToRadians(degrees) {
         return degrees * (Math.PI / 180);
     }
+    /**
+     * @param {Number} x1 
+     * @param {Number} y1 
+     * @param {Number} x2 
+     * @param {Number} y2 
+     * @returns {Number}
+     */
+    distance(x1, y1, x2, y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
 }
 
 window.TPSM = new (class {
@@ -165,7 +175,7 @@ window.TPSM = new (class {
         this.math = new Mathh();
     }
     version() {
-        console.log('v1.1.2')
+        console.log('v1.1.3')
     }
     /**
      * @param {String} value
