@@ -126,9 +126,43 @@ class Doc {
     }
 }
 
+class Mathh {
+    /**
+     * @param {Number} a
+     * @param {Number} b
+     * @returns {Number}
+     */
+    gcd(a, b) {
+        return b == 0 ? a : this.gcd(b, a % b);
+    }
+    /**
+     * @param {Number} a
+     * @param {Number} b
+     * @returns {Number}
+     */
+    lcm(a, b) {
+        return (a * b) / this.gcd(a, b);
+    }
+    /**
+     * @param {Number} radians
+     * @returns {Number}
+     */
+    radiansToDegrees(radians) {
+        return radians * (180 / Math.PI);
+    }
+    /**
+     * @param {Number} degrees
+     * @returns {Number}
+     */
+    degreesToRadians(degrees) {
+        return degrees * (Math.PI / 180);
+    }
+}
+
 window.TPSM = new (class {
     constructor() {
         this.doc = new Doc();
+        this.math = new Mathh();
     }
     /**
      * @param {String} value
