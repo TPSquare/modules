@@ -1,4 +1,51 @@
-class Doc {
+window.TPSM = new (class {
+    constructor() {
+        this.version = 'v1.1.5';
+    }
+    /**
+     * @param {String} value
+     * @param {Object} options
+     * @returns {String}
+     */
+    removeExtraWhitespace(value, options) {
+        value = value.split('\n').map((e) => {
+            e = e.trim();
+            while (e.includes('  ')) e = e.replaceAll('  ', ' ');
+            return e;
+        });
+        value = value.join(options.onOneLine ? ' ' : '\n');
+        return value;
+    }
+    /**
+     * @param {Number} width
+     * @param {Number} height
+     * @param {Function} callback
+     * @param {Node} element
+     */
+    setAspectRatio(width, height, callback, element) {
+        if (typeof element === 'string') element = this.querySelector(element);
+        if (!element) element = document.body;
+        element.arCallback = callback;
+        element.arResize = () => {
+            if ((this.innerWidth * height) / width <= this.innerHeight)
+                element.aspect.width = this.innerWidth;
+            else element.aspect.width = (this.innerHeight * width) / height;
+            element.aspect.height = (element.aspect.width * height) / width;
+            element.arCallback(element.aspect.width, element.aspect.height);
+        };
+        element.aspect = {};
+        this.addEventListener('resize', element.arResize);
+        element.arResize();
+    }
+    /**
+     * @param {Number} duration
+     */
+    delay(duration) {
+        return new Promise((resolve) => setTimeout(resolve, duration));
+    }
+})();
+
+window.TPSM.doc = new (class {
     /**
      * @param {Object} options
      * @returns {Node}
@@ -124,9 +171,9 @@ class Doc {
             element.scrollIntoView({behavior: 'smooth', block});
         });
     }
-}
+})();
 
-class Mathh {
+window.TPSM.math = new (class {
     /**
      * @param {Number} a
      * @param {Number} b
@@ -158,62 +205,13 @@ class Mathh {
         return degrees * (Math.PI / 180);
     }
     /**
-     * @param {Number} x1 
-     * @param {Number} y1 
-     * @param {Number} x2 
-     * @param {Number} y2 
+     * @param {Number} x1
+     * @param {Number} y1
+     * @param {Number} x2
+     * @param {Number} y2
      * @returns {Number}
      */
     distance(x1, y1, x2, y2) {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    }
-}
-
-window.TPSM = new (class {
-    constructor() {
-        this.version = 'v1.1.4'
-        this.doc = new Doc();
-        this.math = new Mathh();
-    }
-    /**
-     * @param {String} value
-     * @param {Object} options
-     * @returns {String}
-     */
-    removeExtraWhitespace(value, options) {
-        value = value.split('\n').map((e) => {
-            e = e.trim();
-            while (e.includes('  ')) e = e.replaceAll('  ', ' ');
-            return e;
-        });
-        value = value.join(options.onOneLine ? ' ' : '\n');
-        return value;
-    }
-    /**
-     * @param {Number} width
-     * @param {Number} height
-     * @param {Function} callback
-     * @param {Node} element
-     */
-    setAspectRatio(width, height, callback, element) {
-        if (typeof element === 'string') element = this.querySelector(element);
-        if (!element) element = document.body;
-        element.arCallback = callback;
-        element.arResize = () => {
-            if ((this.innerWidth * height) / width <= this.innerHeight)
-                element.aspect.width = this.innerWidth;
-            else element.aspect.width = (this.innerHeight * width) / height;
-            element.aspect.height = (element.aspect.width * height) / width;
-            element.arCallback(element.aspect.width, element.aspect.height);
-        };
-        element.aspect = {};
-        this.addEventListener('resize', element.arResize);
-        element.arResize();
-    }
-    /**
-     * @param {Number} duration
-     */
-    delay(duration) {
-        return new Promise((resolve) => setTimeout(resolve, duration));
     }
 })();
