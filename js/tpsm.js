@@ -171,11 +171,9 @@ class Mathh {
 
 window.TPSM = new (class {
     constructor() {
+        this.version = 'v1.1.4'
         this.doc = new Doc();
         this.math = new Mathh();
-    }
-    version() {
-        console.log('v1.1.3')
     }
     /**
      * @param {String} value
