@@ -164,6 +164,9 @@ window.TPSM = new (class {
         this.doc = new Doc();
         this.math = new Mathh();
     }
+    version() {
+        return 'v1.1.1';
+    }
     /**
      * @param {String} value
      * @param {Object} options
