@@ -165,7 +165,7 @@ window.TPSM = new (class {
         this.math = new Mathh();
     }
     version() {
-        return 'v1.1.1';
+        console.log('v1.1.2')
     }
     /**
      * @param {String} value
