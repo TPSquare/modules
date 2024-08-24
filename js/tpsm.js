@@ -1,6 +1,6 @@
 window.TPSM = new (class {
     constructor() {
-        this.version = 'v1.1.6';
+        this.version = 'v1.1.7';
     }
     /**
      * @param {String} value
@@ -13,7 +13,7 @@ window.TPSM = new (class {
             while (e.includes('  ')) e = e.replaceAll('  ', ' ');
             return e;
         });
-        value = value.join(options.oneLine ? ' ' : '\n');
+        value = value.join(options.oneLine ? ' ' : '\n').trim();
         return value;
     }
     /**
