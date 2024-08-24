@@ -1,4 +1,4 @@
-console.log('Imported chunkbase.com.js v1.0.0!');
+console.log('Imported chunkbase.com.js v1.0.1!');
 
 const seedRandomBtn = document.body.querySelector('#seed-random');
 
@@ -29,7 +29,6 @@ const activeKeys = [
     'desertTemple',
     'buriedTreasure',
     'shipwreck',
-    'lavaPool',
     'netherFortress',
     'bastionRemnant',
     'ruinedPortalNether',
