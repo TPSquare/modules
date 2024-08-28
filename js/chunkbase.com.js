@@ -1,4 +1,4 @@
-console.log('Imported chunkbase.com.js v1.1.2!');
+console.log('Imported chunkbase.com.js v1.1.1!');
 
 const seedRandomBtn = document.body.querySelector('#seed-random');
 
@@ -61,4 +61,4 @@ window.addEventListener('keydown', ({key}) => {
     }
 });
 
-window.distance = (x1, y1, x2, y2) => Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+window.chunkDistance = (x1, y1, x2, y2) => Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) / 16;
