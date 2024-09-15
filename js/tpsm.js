@@ -1,6 +1,6 @@
 window.TPSM = new (class {
     constructor() {
-        this.version = 'v1.1.8';
+        this.version = 'v1.1.9';
     }
     /**
      * @param {String} value
@@ -34,7 +34,7 @@ window.TPSM = new (class {
             element.arCallback(element.aspect.width, element.aspect.height);
         };
         element.aspect = {};
-        this.addEventListener('resize', element.arResize);
+        window.addEventListener('resize', element.arResize);
         element.arResize();
     }
     /**
