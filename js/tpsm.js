@@ -1,6 +1,6 @@
 window.TPSM = new (class {
     constructor() {
-        this.version = 'v1.2.1';
+        this.version = 'v1.2.2';
     }
     /**
      * @param {String} value
@@ -126,10 +126,9 @@ window.TPSM.doc = new (class {
         return {
             querySelector: (selector, options) =>
                 this.combine(element.querySelector(selector), options),
-            createElement: (key, options) => {
+            createElement: (options) => {
                 const child = this.createElement(options);
                 element.appendChild(child);
-                element[key] = child;
                 return child;
             }
         };
