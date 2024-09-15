@@ -1,6 +1,6 @@
 window.TPSM = new (class {
     constructor() {
-        this.version = 'v1.1.7';
+        this.version = 'v1.1.8';
     }
     /**
      * @param {String} value
@@ -23,7 +23,7 @@ window.TPSM = new (class {
      * @param {Node} element
      */
     setAspectRatio(width, height, callback, element) {
-        if (typeof element === 'string') element = this.querySelector(element);
+        if (typeof element === 'string') element = document.body.querySelector(element);
         if (!element) element = document.body;
         element.arCallback = callback;
         element.arResize = () => {
