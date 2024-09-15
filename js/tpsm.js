@@ -1,6 +1,6 @@
 window.TPSM = new (class {
     constructor() {
-        this.version = 'v1.1.9';
+        this.version = 'v1.1.10';
     }
     /**
      * @param {String} value
@@ -27,9 +27,9 @@ window.TPSM = new (class {
         if (!element) element = document.body;
         element.arCallback = callback;
         element.arResize = () => {
-            if ((this.innerWidth * height) / width <= this.innerHeight)
-                element.aspect.width = this.innerWidth;
-            else element.aspect.width = (this.innerHeight * width) / height;
+            if ((window.innerWidth * height) / width <= window.innerHeight)
+                element.aspect.width = window.innerWidth;
+            else element.aspect.width = (window.innerHeight * width) / height;
             element.aspect.height = (element.aspect.width * height) / width;
             element.arCallback(element.aspect.width, element.aspect.height);
         };
